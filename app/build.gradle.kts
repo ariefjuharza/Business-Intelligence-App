@@ -44,20 +44,20 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
     
-    // Networking
+    // Jaringan
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
     
-    // Navigation & Architecture
+    // Navigasi & Arsitektur
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     
-    // Icons
+    // Ikon
     implementation(libs.androidx.compose.material.icons.extended)
     
-    // Local Preferences Datastore
+    // Datastore Preferensi Lokal
     implementation(libs.androidx.datastore.preferences)
 
     testImplementation(libs.junit)

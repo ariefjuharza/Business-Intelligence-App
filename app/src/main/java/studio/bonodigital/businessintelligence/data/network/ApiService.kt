@@ -5,6 +5,10 @@ import retrofit2.http.Query
 import studio.bonodigital.businessintelligence.data.model.BiResponse
 import studio.bonodigital.businessintelligence.data.model.IhsgDashboardResponse
 
+/**
+ * Definisi antarmuka untuk layanan API menggunakan Retrofit.
+ * Menyediakan titik akhir untuk analisis bisnis dan ringkasan IHSG.
+ */
 interface ApiService {
     @GET("/api/bi")
     suspend fun getBiAnalysis(

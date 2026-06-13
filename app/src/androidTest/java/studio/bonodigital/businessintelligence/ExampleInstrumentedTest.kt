@@ -9,15 +9,15 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 /**
- * Instrumented test, which will execute on an Android device.
+ * Pengujian terinstrumentasi, yang akan dieksekusi pada perangkat Android.
  *
- * See [testing documentation](http://d.android.com/tools/testing).
+ * Lihat [dokumentasi pengujian](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
-        // Context of the app under test.
+        // Konteks aplikasi yang sedang diuji.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("studio.bonodigital.businessintelligence", appContext.packageName)
     }

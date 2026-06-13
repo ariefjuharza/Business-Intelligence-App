@@ -87,7 +87,7 @@ fun StockAnalysisScreen(
     var searchQuery by remember { mutableStateOf("") }
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    // Trigger initial search if active ticker is passed
+    // Picu pencarian awal jika ticker aktif diberikan
     LaunchedEffect(initialTicker) {
         if (initialTicker != null) {
             searchQuery = initialTicker
@@ -119,7 +119,7 @@ fun StockAnalysisScreen(
                 .padding(paddingValues)
                 .padding(horizontal = 16.dp)
         ) {
-            // Search Input Row
+            // Baris Input Pencarian
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -169,7 +169,7 @@ fun StockAnalysisScreen(
                 }
             }
 
-            // Body Content
+            // Konten Utama
             Box(modifier = Modifier.weight(1f)) {
                 when (val state = uiState) {
                     is BiUiState.Idle -> {
@@ -264,7 +264,7 @@ fun AnalysisResultContent(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // Ticker Header
+        // Header Ticker
         item {
             Card(
                 shape = RoundedCornerShape(16.dp),
@@ -293,7 +293,7 @@ fun AnalysisResultContent(
                                     fontWeight = FontWeight.ExtraBold,
                                     color = TextPrimary
                                 )
-                                // Outlook Badge
+                                // Lencana Outlook
                                 Box(
                                     modifier = Modifier
                                         .background(
@@ -344,7 +344,7 @@ fun AnalysisResultContent(
 
                     Spacer(modifier = Modifier.height(12.dp))
 
-                    // Live auto-refresh indicator
+                    // Indikator penyegaran otomatis langsung
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
@@ -383,7 +383,7 @@ fun AnalysisResultContent(
             }
         }
 
-        // Metrics Grid
+        // Grid Metrik
         item {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Row(
@@ -432,7 +432,7 @@ fun AnalysisResultContent(
             }
         }
 
-        // Custom Canvas Chart
+        // Grafik Canvas Kustom
         item {
             Card(
                 shape = RoundedCornerShape(16.dp),
@@ -473,7 +473,7 @@ fun AnalysisResultContent(
             }
         }
 
-        // CNBC news
+        // Berita CNBC
         item {
             Card(
                 shape = RoundedCornerShape(16.dp),
@@ -525,7 +525,7 @@ fun AnalysisResultContent(
             }
         }
 
-        // Actionable Recommendations
+        // Rekomendasi Strategis
         item {
             Card(
                 shape = RoundedCornerShape(16.dp),
@@ -603,7 +603,7 @@ fun AnalysisResultContent(
             }
         }
 
-        // Transparency and Explainability Card
+        // Kartu Transparansi dan Eksplanabilitas
         item {
             Card(
                 shape = RoundedCornerShape(16.dp),

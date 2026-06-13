@@ -46,6 +46,10 @@ class BiViewModel(private val repository: BiRepository) : ViewModel() {
     private var autoTickJob: Job? = null
     private var currentTicker: String = ""
 
+    /**
+     * Melakukan pencarian analisis untuk ticker saham tertentu.
+     * Dapat dipaksa menggunakan HTTP (Retrofit) jika diperlukan.
+     */
     fun searchTicker(ticker: String, forceHttp: Boolean = false) {
         val cleanTicker = ticker.trim().uppercase()
         if (cleanTicker.isEmpty()) return
@@ -73,7 +77,7 @@ class BiViewModel(private val repository: BiRepository) : ViewModel() {
                         _uiState.value = BiUiState.Success(response)
                         startCountdown()
                     } catch (_: Exception) {
-                        // In case of any parsing error, lets fallback to HTTP
+                        // Jika terjadi kesalahan parsing, gunakan HTTP sebagai cadangan
                         fetchAnalysisHttp(ticker)
                     }
                 }
@@ -82,7 +86,7 @@ class BiViewModel(private val repository: BiRepository) : ViewModel() {
                 _wsStatus.value = status
             },
             onError = { _ ->
-                // Fallback to Retrofit HTTP on connection issue
+                // Gunakan Retrofit HTTP sebagai cadangan jika ada masalah koneksi
                 fetchAnalysisHttp(ticker)
             }
         )
@@ -108,7 +112,7 @@ class BiViewModel(private val repository: BiRepository) : ViewModel() {
                 delay(1000)
                 _countdown.value -= 1
             }
-            // Trigger refresh tick when countdown hits 0
+            // Picu detak penyegaran saat hitungan mundur mencapai 0
             triggerWebSocketTick()
         }
     }
@@ -120,7 +124,7 @@ class BiViewModel(private val repository: BiRepository) : ViewModel() {
             ws.send(tickMessage)
             startCountdown()
         } else {
-            // Reconnect or fallback
+            // Hubungkan kembali atau gunakan cadangan
             searchTicker(currentTicker)
         }
     }
@@ -135,11 +139,14 @@ class BiViewModel(private val repository: BiRepository) : ViewModel() {
                 delay(1000)
                 _countdown.value -= 1
             }
-            // Trigger HTTP reload
+            // Picu pemuatan ulang HTTP
             fetchAnalysisHttp(currentTicker)
         }
     }
 
+    /**
+     * Menambah atau menghapus ticker dari daftar pantauan (watchlist).
+     */
     fun toggleFavorite(ticker: String) {
         viewModelScope.launch {
             val currentList = watchlist.value
@@ -154,10 +161,16 @@ class BiViewModel(private val repository: BiRepository) : ViewModel() {
         }
     }
 
+    /**
+     * Memeriksa apakah ticker saat ini ada di dalam daftar pantauan.
+     */
     fun checkIfFavorited() {
         _isFavorited.value = watchlist.value.contains(currentTicker)
     }
 
+    /**
+     * Membersihkan koneksi WebSocket dan menghentikan semua pekerjaan latar belakang.
+     */
     private fun cleanupConnection() {
         countdownJob?.cancel()
         autoTickJob?.cancel()

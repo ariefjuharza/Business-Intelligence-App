@@ -77,7 +77,7 @@ fun CustomStockChart(
             val pointsCount = closingPrices.size
             val stepX = width / (pointsCount - 1).coerceAtLeast(1)
 
-            // Draw Grid lines
+            // Gambar garis kisi (Grid)
             val gridLines = 4
             for (i in 0..gridLines) {
                 val y = height * i / gridLines
@@ -88,7 +88,7 @@ fun CustomStockChart(
                     strokeWidth = 1.dp.toPx()
                 )
                 
-                // Draw Y axis labels
+                // Gambar label sumbu Y
                 val labelPrice = maxPrice - (priceRange * i / gridLines)
                 val labelText = String.format("%.2f", labelPrice)
                 drawText(
@@ -99,32 +99,32 @@ fun CustomStockChart(
                 )
             }
 
-            // Draw line chart path
+            // Gambar jalur grafik garis
             val path = Path()
             val points = mutableListOf<Offset>()
             closingPrices.forEachIndexed { index, price ->
                 val x = index * stepX
                 val normalizedY = (price - minPrice) / priceRange
-                val y = height - (normalizedY * (height - 40f) + 20f).toFloat() // padding 20f top/bottom
+                val y = height - (normalizedY * (height - 40f) + 20f).toFloat() // padding 20f atas/bawah
                 points.add(Offset(x, y))
                 if (index == 0) {
                     path.moveTo(x, y)
                 } else {
-                    // Draw smooth curve
+                    // Gambar kurva halus
                     val prevPoint = points[index - 1]
                     val controlX = (prevPoint.x + x) / 2
                     path.cubicTo(controlX, prevPoint.y, controlX, y, x, y)
                 }
             }
 
-            // Draw line
+            // Gambar garis
             drawPath(
                 path = path,
                 color = BullishGreen,
                 style = Stroke(width = 2.dp.toPx())
             )
 
-            // Draw gradient area underline
+            // Gambar area gradien di bawah garis
             val fillPath = Path().apply {
                 addPath(path)
                 lineTo(width, height)
@@ -143,7 +143,7 @@ fun CustomStockChart(
                 )
             )
 
-            // Draw dots at points
+            // Gambar titik pada poin-poin data
             points.forEach { point ->
                 drawCircle(
                     color = BullishGreen,
@@ -152,11 +152,11 @@ fun CustomStockChart(
                 )
             }
 
-            // Draw touch indicator
+            // Gambar indikator sentuhan (hover)
             if (selectedIndex != -1 && selectedIndex < points.size) {
                 val point = points[selectedIndex]
                 
-                // Vertical line
+                // Garis vertikal penunjuk
                 drawLine(
                     color = Color.White.copy(alpha = 0.3f),
                     start = Offset(point.x, 0f),
@@ -164,7 +164,7 @@ fun CustomStockChart(
                     strokeWidth = 1.dp.toPx()
                 )
 
-                // Hover dot
+                // Titik sorot (hover)
                 drawCircle(
                     color = Color.White,
                     radius = 5.dp.toPx(),
@@ -177,10 +177,10 @@ fun CustomStockChart(
                     style = Stroke(width = 2.dp.toPx())
                 )
 
-                // Tooltip text
+                // Teks kotak info (tooltip)
                 val dateStr = dates?.getOrNull(selectedIndex) ?: ""
                 val priceVal = closingPrices[selectedIndex]
-                val tooltipText = $$"$$dateStr: $$${String.format("%.2f", priceVal)}"
+                val tooltipText = "$dateStr: ${String.format("%.2f", priceVal)}"
                 val textLayoutResult = textMeasurer.measure(
                     text = tooltipText,
                     style = TextStyle(color = Color.White, fontSize = 10.sp)
@@ -189,7 +189,7 @@ fun CustomStockChart(
                 val tooltipX = (point.x - tooltipWidth / 2).coerceIn(10f, width - tooltipWidth - 10f)
                 val tooltipY = (point.y - 40f).coerceIn(10f, height - 30f)
 
-                // Tooltip background
+                // Latar belakang kotak info (tooltip)
                 drawRect(
                     color = Color(0xFF0F172A),
                     topLeft = Offset(tooltipX - 8f, tooltipY - 4f),

@@ -9,6 +9,10 @@ import studio.bonodigital.businessintelligence.data.model.IhsgDashboardResponse
 import studio.bonodigital.businessintelligence.data.network.NetworkModule
 import okhttp3.WebSocket
 
+/**
+ * BiRepository bertindak sebagai mediator antara sumber data (DataStore dan API)
+ * serta menyediakan metode untuk mengakses analisis bisnis dan data IHSG.
+ */
 class BiRepository(context: Context) {
     private val watchlistStore = WatchlistStore(context)
 

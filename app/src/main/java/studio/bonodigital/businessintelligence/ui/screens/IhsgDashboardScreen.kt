@@ -184,7 +184,7 @@ fun IhsgContent(
             .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // Summary Cards Grid
+        // Grid Kartu Ringkasan
         item {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -227,7 +227,7 @@ fun IhsgContent(
             }
         }
 
-        // Custom Canvas Chart
+        // Grafik Canvas Kustom
         item {
             Card(
                 shape = RoundedCornerShape(16.dp),
@@ -258,7 +258,7 @@ fun IhsgContent(
             }
         }
 
-        // Table List
+        // Daftar Tabel
         item {
             Text(
                 text = "IDX Blue Chip Watchlist",
@@ -355,14 +355,14 @@ fun IhsgSentimentBarChart(
                 else -> BearishRed
             }
 
-            // Draw Bar
+            // Gambar Batang
             drawRect(
                 color = color,
                 topLeft = Offset(x, y),
                 size = Size(barWidth, barHeight)
             )
 
-            // Draw Score Text
+            // Gambar Teks Skor
             val scoreText = String.format("%.1f", score)
             val scoreLayout = textMeasurer.measure(
                 text = scoreText,
@@ -386,7 +386,7 @@ fun IhsgSentimentBarChart(
                 )
             )
 
-            // Draw Ticker Label
+            // Gambar Label Ticker
             val tickerLayout = textMeasurer.measure(
                 text = item.ticker,
                 style = TextStyle(
@@ -443,7 +443,7 @@ fun StockListItem(
                     color = TextSecondary
                 )
                 Spacer(modifier = Modifier.height(4.dp))
-                // Sector Badge
+                // Lencana Sektor
                 Box(
                     modifier = Modifier
                         .background(

@@ -190,7 +190,7 @@ fun SettingsScreen(
                             fontSize = 14.sp
                         )
                         Text(
-                            text = "Business Intelligence AI Client v1.0\nCapstone Project Group SC1\nPowered by FastAPI + FinBERT AI Engine.",
+                            text = "Business Intelligence AI Client v1.0\nCapstone Project Group PJK-RU120\nPijak in collaboration with IBM SkillsBuild\nPowered by FastAPI + FinBERT AI Engine.",
                             fontSize = 11.sp,
                             color = TextSecondary
                         )

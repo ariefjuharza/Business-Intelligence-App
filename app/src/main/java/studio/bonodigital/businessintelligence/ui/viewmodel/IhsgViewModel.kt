@@ -14,6 +14,9 @@ import kotlinx.coroutines.launch
 import studio.bonodigital.businessintelligence.data.repository.BiRepository
 import java.util.Date
 
+/**
+ * Representasi data saham tunggal untuk tampilan Dashboard IHSG.
+ */
 data class IhsgStockItem(
     val ticker: String,
     val name: String,
@@ -26,12 +29,18 @@ data class IhsgStockItem(
     val ok: Boolean
 )
 
+/**
+ * State UI untuk mengelola status pemuatan dan data saham IHSG.
+ */
 sealed interface IhsgUiState {
     object Loading : IhsgUiState
     data class Success(val stocks: List<IhsgStockItem>) : IhsgUiState
     data class Error(val message: String) : IhsgUiState
 }
 
+/**
+ * ViewModel untuk mengelola logika data Dashboard IHSG (Indeks Harga Saham Gabungan).
+ */
 class IhsgViewModel(private val repository: BiRepository) : ViewModel() {
     private val _uiState = MutableStateFlow<IhsgUiState>(IhsgUiState.Loading)
     val uiState: StateFlow<IhsgUiState> = _uiState.asStateFlow()
@@ -54,11 +63,14 @@ class IhsgViewModel(private val repository: BiRepository) : ViewModel() {
         startAutoRefresh()
     }
 
+    /**
+     * Mengambil data saham dari API untuk daftar saham IDX pilihan.
+     */
     fun fetchIhsgData() {
         viewModelScope.launch {
             _uiState.value = IhsgUiState.Loading
             try {
-                // Initialize Base URL first
+                // Inisialisasi URL Dasar terlebih dahulu
                 repository.initApiUrl()
                 
                 val jobs = idxStocks.map { (ticker, details) ->
@@ -98,16 +110,19 @@ class IhsgViewModel(private val repository: BiRepository) : ViewModel() {
                 _uiState.value = IhsgUiState.Success(results)
                 _lastUpdate.value = Date()
             } catch (e: Exception) {
-                _uiState.value = IhsgUiState.Error(e.message ?: "Failed to load IDX stocks")
+                _uiState.value = IhsgUiState.Error(e.message ?: "Gagal memuat daftar saham IDX")
             }
         }
     }
 
+    /**
+     * Memulai proses penyegaran data otomatis setiap 60 detik.
+     */
     private fun startAutoRefresh() {
         viewModelScope.launch {
             while (true) {
                 fetchIhsgData()
-                delay(60000) // 60 seconds
+                delay(60000) // 60 detik
             }
         }
     }

@@ -137,4 +137,4 @@ Aplikasi Android ini dibangun sebagai bagian dari proyek akhir kelompok **PJK-RU
 - **Arif Juharza** - Android Client Developer & Integrator
 
 ---
-**Lisensi**: MIT License. Hak cipta dilindungi undang-undang kelompok Capstone Pijak in collaboration with IBM SkillsBuild 2026.
+**Lisensi**: MIT License. Hak cipta dilindungi undang-undang; Kelompok Capstone Pijak in collaboration with IBM SkillsBuild 2026.

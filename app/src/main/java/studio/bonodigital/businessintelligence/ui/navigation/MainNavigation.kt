@@ -49,7 +49,7 @@ fun MainNavigation(repository: BiRepository) {
 
     val context = LocalContext.current
     
-    // ViewModels sharing repository
+    // ViewModel yang berbagi repositori yang sama
     val biViewModel: BiViewModel = viewModel(
         factory = BiViewModel.provideFactory(context)
     )
@@ -84,15 +84,15 @@ fun MainNavigation(repository: BiRepository) {
                                 else -> screen.route
                             }
                             navController.navigate(routeToNavigate) {
-                                // Pop up to the start destination of the graph to
-                                // avoid building up a large stack of destinations
+                                // Pop up ke tujuan awal grafik untuk
+                                // menghindari penumpukan tumpukan tujuan yang besar
                                 popUpTo(Screen.Ihsg.route) {
                                     saveState = true
                                 }
-                                // Avoid multiple copies of the same destination when
-                                // reselecting the same item
+                                // Hindari beberapa salinan dari tujuan yang sama saat
+                                // memilih kembali item yang sama
                                 launchSingleTop = true
-                                // Restore state when reselecting a previously selected item
+                                // Pulihkan status saat memilih kembali item yang sebelumnya dipilih
                                 restoreState = true
                             }
                         },

@@ -9,6 +9,10 @@ import kotlinx.coroutines.flow.map
 
 val Context.dataStore by preferencesDataStore(name = "bi_settings")
 
+/**
+ * WatchlistStore bertanggung jawab untuk menyimpan dan mengambil data persisten aplikasi
+ * seperti daftar pantauan (watchlist) saham dan URL basis API menggunakan Jetpack DataStore.
+ */
 class WatchlistStore(private val context: Context) {
     companion object {
         private val WATCHLIST_KEY = stringPreferencesKey("watchlist_tickers")
