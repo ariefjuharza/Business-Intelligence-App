@@ -131,10 +131,10 @@ Aplikasi ini sepenuhnya mengadopsi identitas visual modern pasar finansial globa
 ---
 
 ## 👥 Kredit Tim Pengembang
-Aplikasi Android ini dibangun sebagai bagian dari proyek akhir kelompok **SC1** (Capstone Project):
-- **Diaz** - Frontend Web Developer
-- **Zamaruddin** - Backend AI Engineer
-- **Bono Digital Studio Team** - Android Client Developer & Integrator
+Aplikasi Android ini dibangun sebagai bagian dari proyek akhir kelompok **PJK-RU120** (Pijak Capstone Project):
+- **Muhammad Zamaruddin** - Backend AI Engineer
+- **Dias Khairul Ihsan** - Frontend Web Developer
+- **Arif Juharza** - Android Client Developer & Integrator
 
 ---
-**Lisensi**: MIT License. Hak cipta dilindungi undang-undang kelompok Capstone SC1 2026.
+**Lisensi**: MIT License. Hak cipta dilindungi undang-undang kelompok Capstone Pijak in collaboration with IBM SkillsBuild 2026.
