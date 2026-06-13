@@ -79,7 +79,7 @@ class IhsgViewModel(private val repository: BiRepository) : ViewModel() {
                                 label = sent?.label,
                                 ok = true
                             )
-                        } catch (e: Exception) {
+                        } catch (_: Exception) {
                             IhsgStockItem(
                                 ticker = ticker,
                                 name = name,

@@ -78,7 +78,7 @@ studio.bonodigital.businessintelligence
 
 ### Prasyarat:
 - Android Studio (versi Ladybug / Jellyfish ke atas sangat direkomendasikan).
-- Android SDK dengan **Minimum SDK 26** (Android 8.0 Oreo) dan **Target SDK 36** (Android 15).
+- Android SDK dengan **Minimum SDK 26** (Android 8.0 Oreo) dan **Target SDK 37** (Android 17).
 - JDK 17 atau lebih baru terpasang di sistem.
 
 ### Langkah-langkah:

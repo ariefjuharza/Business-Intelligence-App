@@ -72,8 +72,8 @@ class BiViewModel(private val repository: BiRepository) : ViewModel() {
                         val response = Gson().fromJson(text, BiResponse::class.java)
                         _uiState.value = BiUiState.Success(response)
                         startCountdown()
-                    } catch (e: Exception) {
-                        // In case of any parsing error, let's fallback to HTTP
+                    } catch (_: Exception) {
+                        // In case of any parsing error, lets fallback to HTTP
                         fetchAnalysisHttp(ticker)
                     }
                 }
@@ -81,7 +81,7 @@ class BiViewModel(private val repository: BiRepository) : ViewModel() {
             onStatus = { status ->
                 _wsStatus.value = status
             },
-            onError = { throwable ->
+            onError = { _ ->
                 // Fallback to Retrofit HTTP on connection issue
                 fetchAnalysisHttp(ticker)
             }

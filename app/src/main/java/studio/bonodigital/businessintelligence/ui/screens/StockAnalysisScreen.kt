@@ -2,18 +2,52 @@ package studio.bonodigital.businessintelligence.ui.screens
 
 import android.content.Context
 import android.content.Intent
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DividerDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,7 +61,15 @@ import androidx.compose.ui.unit.sp
 import com.google.gson.GsonBuilder
 import studio.bonodigital.businessintelligence.data.model.BiResponse
 import studio.bonodigital.businessintelligence.ui.components.CustomStockChart
-import studio.bonodigital.businessintelligence.ui.theme.*
+import studio.bonodigital.businessintelligence.ui.theme.BearishRed
+import studio.bonodigital.businessintelligence.ui.theme.BullishGreen
+import studio.bonodigital.businessintelligence.ui.theme.DarkBackground
+import studio.bonodigital.businessintelligence.ui.theme.DarkPrimary
+import studio.bonodigital.businessintelligence.ui.theme.DarkSurface
+import studio.bonodigital.businessintelligence.ui.theme.NeutralYellow
+import studio.bonodigital.businessintelligence.ui.theme.TextMuted
+import studio.bonodigital.businessintelligence.ui.theme.TextPrimary
+import studio.bonodigital.businessintelligence.ui.theme.TextSecondary
 import studio.bonodigital.businessintelligence.ui.viewmodel.BiUiState
 import studio.bonodigital.businessintelligence.ui.viewmodel.BiViewModel
 
@@ -468,9 +510,10 @@ fun AnalysisResultContent(
                                     )
                                 }
                                 if (i < 4 && i < news.size - 1) {
-                                    Divider(
-                                        color = Color.White.copy(alpha = 0.05f),
-                                        modifier = Modifier.padding(vertical = 8.dp)
+                                    HorizontalDivider(
+                                        modifier = Modifier.padding(vertical = 8.dp),
+                                        thickness = DividerDefaults.Thickness,
+                                        color = Color.White.copy(alpha = 0.05f)
                                     )
                                 }
                             }
@@ -545,9 +588,10 @@ fun AnalysisResultContent(
                                     color = TextSecondary
                                 )
                                 if (i < recommendations.size - 1) {
-                                    Divider(
-                                        color = Color.White.copy(alpha = 0.05f),
-                                        modifier = Modifier.padding(vertical = 10.dp)
+                                    HorizontalDivider(
+                                        modifier = Modifier.padding(vertical = 10.dp),
+                                        thickness = DividerDefaults.Thickness,
+                                        color = Color.White.copy(alpha = 0.05f)
                                     )
                                 }
                             }

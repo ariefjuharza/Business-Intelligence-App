@@ -6,7 +6,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -37,8 +38,8 @@ fun CustomStockChart(
     if (closingPrices.isEmpty()) return
 
     val textMeasurer = rememberTextMeasurer()
-    var selectedIndex by remember { mutableStateOf(-1) }
-    var touchX by remember { mutableStateOf(0f) }
+    var selectedIndex by remember { mutableIntStateOf(-1) }
+    var touchX by remember { mutableFloatStateOf(0f) }
 
     val maxPrice = closingPrices.maxOrNull() ?: 1.0
     val minPrice = closingPrices.minOrNull() ?: 0.0
@@ -123,7 +124,7 @@ fun CustomStockChart(
                 style = Stroke(width = 2.dp.toPx())
             )
 
-            // Draw gradient area under line
+            // Draw gradient area underline
             val fillPath = Path().apply {
                 addPath(path)
                 lineTo(width, height)
@@ -179,7 +180,7 @@ fun CustomStockChart(
                 // Tooltip text
                 val dateStr = dates?.getOrNull(selectedIndex) ?: ""
                 val priceVal = closingPrices[selectedIndex]
-                val tooltipText = "$dateStr: \$${String.format("%.2f", priceVal)}"
+                val tooltipText = $$"$$dateStr: $$${String.format("%.2f", priceVal)}"
                 val textLayoutResult = textMeasurer.measure(
                     text = tooltipText,
                     style = TextStyle(color = Color.White, fontSize = 10.sp)
